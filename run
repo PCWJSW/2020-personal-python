@@ -1,0 +1,4 @@
+python3 GHAnalysis.py -i json
+python3 GHAnalysis.py -u waleko -e PushEvent
+python3 GHAnalysis.py -r katzer/cordova-plugin-background-mode  -e PushEvent
+python3 GHAnalysis.py -u cdupuis -r atomist/automation-client -e PushEvent
