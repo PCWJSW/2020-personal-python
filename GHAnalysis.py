@@ -4,7 +4,7 @@ import json
 import os
 
 
-def read_json(path):
+def init(path):
     os.getcwd() 
     filelist = os.listdir(path)
     f2=open('2020-01-01-15.json','w',encoding='utf-8')
@@ -20,7 +20,7 @@ def read_json(path):
     return 0
 
 
-def caculate_one(data,repo,event):
+def one(data,repo,event):
     ans=0
     for da in data:
         if  repo!=da['repo']['name']:
@@ -28,7 +28,7 @@ def caculate_one(data,repo,event):
         if  da['type'] == event:
             ans=ans+1
     return ans
-def caculate_two(data,username,event):
+def two(data,username,event):
     ans=0
     for da in data:
         if  username!=da['actor']['login']:
@@ -36,7 +36,7 @@ def caculate_two(data,username,event):
         if  da['type'] == event:
             ans=ans+1
     return ans
-def caculate_ans(data,username,repo,event):
+def three(data,username,repo,event):
     ans=0
     for da in data:
         if  username!=da['actor']['login']:
@@ -63,7 +63,7 @@ if __name__ == '__main__':
             f.close()
     opt,arg= getopt.getopt(sys.argv[1:],'i:u:r:e:',['init=','user=','repo=','event='])
     if opt in ("-i" , "--init"):
-        read_json(opt[0][1])
+        init(opt[0][1])
         exit()
     for opt,arg in opt:
         if opt in ("-u","--user"):
@@ -73,8 +73,8 @@ if __name__ == '__main__':
         elif opt in ("-e","--event"):
             event = arg
     if  username=='0':
-        print(caculate_one(data,repo,event))
+        print(one(data,repo,event))
     elif  repo=='0':
-        print(caculate_two(data,username,event))
+        print(two(data,username,event))
     else:
-        print(caculate_ans(data , username , repo , event))
+        print(three(data , username , repo , event))
